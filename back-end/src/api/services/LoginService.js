@@ -3,7 +3,7 @@ const { User } = require('../../database/models');
 
 class LoginService {
   constructor() {
-    this.model = new User();
+    this.model = User;
   }
 
   async create({ email, password, name, role }) {

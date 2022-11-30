@@ -1,4 +1,4 @@
-const LoginService = require('../services/loginService');
+const LoginService = require('../services/LoginService');
 const generateToken = require('../utils/generateToken');
 
 class LoginController {
