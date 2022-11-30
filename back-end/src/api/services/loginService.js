@@ -9,7 +9,7 @@ class loginService {
 
     if (userExist) return null;
 
-    const result = await User.create({
+    const result = await this.model.create({
       email,
       password: md5(password),
       name,
@@ -25,4 +25,4 @@ class loginService {
   }
 }
 
-module.exports = loginService;
+module.exports = LoginService;

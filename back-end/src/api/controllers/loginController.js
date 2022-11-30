@@ -3,7 +3,7 @@ const LoginService = require('../services/loginService');
 const generateToken = require('../utils/generateToken');
 // const decodeToken = require('../utils/decodeToken');
 
-class loginController {
+class LoginController {
   constructor() {
     this.serviceLogin = new LoginService();
   }
@@ -73,4 +73,4 @@ class loginController {
   // }
 }
 
-module.exports = loginController;
+module.exports = LoginController;
