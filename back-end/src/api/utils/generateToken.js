@@ -9,6 +9,6 @@ const generateToken = ({ id, name }) => {
     algorithm: 'HS256',
   });
   return token;
-}
+};
 
 module.exports = generateToken;
