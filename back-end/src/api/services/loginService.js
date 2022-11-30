@@ -1,14 +1,13 @@
+const md5 = require('md5');
 const { User } = require('../../database/models');
-const { Op } = require("sequelize");
-const md5 = require("md5");
 
 class loginService {
+  constructor() { this.model = User; }
 
-  create = async ({ email, password, name, role }) => {
-  //  const userExist = await User.findOne({ where: { name } });
+  async create({ email, password, name, role }) {
+   const userExist = await this.model.findOne({ where: { name } });
 
-  //   if (userExist) return null;
-  
+    if (userExist) return null;
 
     const result = await User.create({
       email,
@@ -18,14 +17,12 @@ class loginService {
     });
   
     return { email, name, role: result.role, id: result.id };
-  };
-
-
-  findUser = async (email) => {
-  const userExist = await User.findOne({ where: { email }});
-  return userExist
   }
-  
+
+ async findUser(email) {
+  const userExist = await this.model.findOne({ where: { email } });
+  return userExist;
+  }
 }
 
 module.exports = loginService;
