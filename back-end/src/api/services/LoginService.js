@@ -8,9 +8,7 @@ class LoginService {
 
   async create({ email, password, name, role }) {
   //  const userExist = await User.findOne({ where: { name } });
-
   //   if (userExist) return null;
-
     const result = await this.model.create({
       email,
       password: md5(password),
