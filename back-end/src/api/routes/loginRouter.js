@@ -21,7 +21,7 @@ loginRouter.post(
 loginRouter.get(
   '/validate',
   (req, res, next) => tokenValidation(req, res, next),
-  (req, res, next) => loginController.validation(req, res, next)
+  (req, res, next) => loginController.validation(req, res, next),
 );
 
 module.exports = loginRouter;

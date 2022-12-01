@@ -12,6 +12,8 @@ app.use('/users', loginRouter);
 app.use('/products', productRouter);
 app.use('/sales', salesRouter);
 
+app.use('/images', express.static('images')); 
+
 app.use(handleError);
 
 module.exports = app;
