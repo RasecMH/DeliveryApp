@@ -25,6 +25,18 @@ class SaleController {
       next(error);
     }
   }
+
+  async create(req, res, next) {
+    try {
+      const sale = req.body;
+      const newSale = await this.service.create(sale);
+
+      return res.status(200).json(newSale);
+      
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = SaleController;

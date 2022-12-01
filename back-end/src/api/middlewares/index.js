@@ -1,7 +1,9 @@
 const loginValidation = require('./loginValidation');
-const validateNewUser = require('./newUserValidation');
+const newUserValidation = require('./newUserValidation');
+const tokenValidation = require('./tokenValidation');
 
 module.exports = {
   loginValidation,
-  validateNewUser,
+  newUserValidation,
+  tokenValidation
 };
