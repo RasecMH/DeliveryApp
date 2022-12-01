@@ -33,9 +33,8 @@ class loginService {
   }
 
   async findAll() {
-    
-    const  allUser = await this.model.findAll({
-      attributes: { exclude: ['password'] }
+    const allUser = await this.model.findAll({
+      attributes: { exclude: ['password'] },
     });
   
     if (!allUser) throw new CustomError('NOT_FOUND', 'Incorrect username or password');

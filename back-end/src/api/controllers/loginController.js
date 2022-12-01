@@ -39,7 +39,6 @@ class LoginController {
 
   async findAll(_req, res, next) {
     try {
-      
       const findAll = await this.serviceLogin.findAll();
 
       res.status(200).json(findAll);
@@ -47,7 +46,6 @@ class LoginController {
       next(error);
     }
   }
-
 }
 
 module.exports = LoginController;
