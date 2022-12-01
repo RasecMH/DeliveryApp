@@ -1,6 +1,6 @@
 const SaleService = require('../services/SaleService');
 
-class ProductController {
+class SaleController {
   constructor() {
     this.service = new SaleService();
   }
@@ -27,4 +27,4 @@ class ProductController {
   }
 }
 
-module.exports = ProductController;
+module.exports = SaleController;
