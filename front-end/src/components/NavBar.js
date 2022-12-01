@@ -1,16 +1,21 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import './NavBar.css';
 
-function NavBar() {
+function NavBar({ userType = 'customer' }) {
   return (
     <div className="container">
       <div className="container">
-        <button
-          type="button"
-          data-testid="customer_products__element-navbar-link-products"
-        >
-          PRODUTOS
-        </button>
+        {
+          userType === 'customer' && (
+            <button
+              type="button"
+              data-testid="customer_products__element-navbar-link-products"
+            >
+              PRODUTOS
+            </button>
+          )
+        }
         <button
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
@@ -34,5 +39,9 @@ function NavBar() {
     </div>
   );
 }
+
+NavBar.propTypes = {
+  userType: PropTypes.string,
+}.isRequired;
 
 export default NavBar;

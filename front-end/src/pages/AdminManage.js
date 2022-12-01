@@ -1,12 +1,12 @@
 import React from 'react';
-import NavBarAdmin from '../components/NavBarAdmin';
+import NavBar from '../components/NavBar';
 import NewUserForm from '../components/NewUserForm';
 import UsersTable from '../components/UsersTable';
 
 function AdminManage() {
   return (
     <div>
-      <NavBarAdmin />
+      <NavBar userType="Admin" />
       <NewUserForm />
       <UsersTable />
     </div>
