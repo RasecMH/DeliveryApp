@@ -1,17 +1,11 @@
-    const authentication = (req, res, next) => {
-    const { password } = req.body;
+const { validateLogin } = require('../validations/validations');
 
-      if (!password || password.length < 6) {
-      return res.status(422).json({ message: 'password invalid' });
-    }
-    
-// const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    
-//     if (regex.test(email) === false) {
-//       return res.status(422).json({ message: 'email invalid' });
-//     }
-  
-    next();
-  };
+module.exports = (req, _res, next) => {
+  const error = validateLogin(req.body);
 
-module.exports = authentication;
+  if (error.type) {
+    next(error);
+  }
+
+  next();
+};
