@@ -1,9 +1,9 @@
-const { Sales } = require('../../database/models');
+const { Sale } = require('../../database/models');
 const AbstractService = require('./AbstractService');
 
 class SaleService extends AbstractService {
   constructor() {
-    super(Sales);
+    super(Sale);
   }
 }
 

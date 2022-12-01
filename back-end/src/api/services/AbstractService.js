@@ -13,7 +13,7 @@ class AbstractService {
   async getById(id) {
     const result = await this.model.findByPk(id);
 
-    if (result) return { type: null, result };
+    if (result) return result;
     
     throw new CustomError('NOT_FOUND', 'Id not found');
   }
