@@ -1,13 +1,13 @@
 const { Router } = require('express');
 
-const categoriesRouter = Router();
+const salesRouter = Router();
 
-categoriesRouter.route('/:id')
+salesRouter.route('/:id')
   .get()
   .put();
 
-categoriesRouter.route('/')
+salesRouter.route('/')
   .get()
   .post();
 
-module.exports = categoriesRouter;
+module.exports = salesRouter;
