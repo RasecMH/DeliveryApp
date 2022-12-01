@@ -32,7 +32,6 @@ class SaleController {
       const newSale = await this.service.create(sale);
 
       return res.status(200).json(newSale);
-      
     } catch (error) {
       next(error);
     }
