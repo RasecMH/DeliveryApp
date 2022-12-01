@@ -1,9 +1,10 @@
 import React from 'react';
+import NavBarAdmin from '../components/NavBarAdmin';
 
 function AdminManage() {
   return (
     <div>
-      <h1>Hello do AdminManage</h1>
+      <NavBarAdmin />
     </div>
   );
 }
