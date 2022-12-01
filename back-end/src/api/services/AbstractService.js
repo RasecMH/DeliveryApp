@@ -1,3 +1,5 @@
+const CustomError = require('../utils/CustomError');
+
 class AbstractService {
   constructor(model) {
     this.model = model;
@@ -13,7 +15,7 @@ class AbstractService {
 
     if (result) return { type: null, result };
     
-    return { type: 'NOT_FOUND', message: 'Id not found' };
+    throw new CustomError('NOT_FOUND', 'Id not found');
   }
 }
 
