@@ -31,6 +31,17 @@ class loginService {
 
   return dataValues;
   }
+
+  async findAll() {
+    
+    const  allUser = await this.model.findAll({
+      attributes: { exclude: ['password'] }
+    });
+  
+    if (!allUser) throw new CustomError('NOT_FOUND', 'Incorrect username or password');
+  
+    return allUser;
+    }
 }
 
 module.exports = loginService;

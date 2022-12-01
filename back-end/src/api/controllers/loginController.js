@@ -36,6 +36,18 @@ class LoginController {
       next(error);
     }
   }
+
+  async findAll(_req, res, next) {
+    try {
+      
+      const findAll = await this.serviceLogin.findAll();
+
+      res.status(200).json(findAll);
+    } catch (error) {
+      next(error);
+    }
+  }
+
 }
 
 module.exports = LoginController;
