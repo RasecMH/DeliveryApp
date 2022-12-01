@@ -1,5 +1,4 @@
 import React from 'react';
-import skolImage from '../images/skol_lata_350ml.jpg';
 import './ItemCard.css';
 
 function ItemCard() {
@@ -8,18 +7,18 @@ function ItemCard() {
       <span
         data-testid="customer_products__element-card-price-<id>"
       >
-        R$ 4,49
+        R$ 2,20
 
       </span>
       <img
         data-testid="customer_products__img-card-bg-image-<id>"
-        src={ skolImage }
+        src="http://localhost:3001/images/skol_lata_350ml.jpg"
         alt="skol lata"
       />
       <span
         data-testid="customer_products__element-card-title-<id>"
       >
-        Skol Lata
+        Skol Lata 250ml
 
       </span>
       <div>
