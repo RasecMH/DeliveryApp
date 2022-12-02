@@ -1,11 +1,20 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 
-function OrderDetailsTotalDisplay() {
+function OrderDetailsTotalDisplay({ totalPrice }) {
   return (
     <div>
-      <span>Total: R$ 28,46</span>
+      <span data-testid="customer_order_details__element-order-total-price">
+        Total: R$
+        {' '}
+        {totalPrice}
+      </span>
     </div>
   );
 }
+
+OrderDetailsTotalDisplay.propTypes = {
+  totalPrice: PropTypes.number,
+}.isRequired;
 
 export default OrderDetailsTotalDisplay;

@@ -26,7 +26,7 @@ function CustomerOrderDetails() {
         saleStatus={ data.status }
       />
       <OrderDetailsTable productList={ data.salesProducts } />
-      <OrderDetailsTotalDisplay />
+      <OrderDetailsTotalDisplay totalPrice={ data.total_price } />
     </div>
   );
 }
