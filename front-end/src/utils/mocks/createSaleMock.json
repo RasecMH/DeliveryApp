@@ -1,8 +1,8 @@
 {
   "id": 1,
   "user_id": 3,
-  "seller_id": 2,
-  "total_price": 15.0,
+  "seller_name": "Fulana Pereira",
+  "total_price": 22.5,
   "delivery_address": "Rua das Pipoquinha, n 514",
   "delivery_number": "55111234567899",
   "sale_date": "07/04/2021",
@@ -12,7 +12,7 @@
       "id": 2,
       "name": "Heineken 600ml",
       "price": 7.5,
-      "quantity": 1,
+      "quantity": 2,
       "url_image": "http://localhost:3001/images/heineken_600ml.jpg"
     },
     {

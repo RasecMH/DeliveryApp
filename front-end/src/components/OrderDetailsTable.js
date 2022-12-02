@@ -1,6 +1,7 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 
-function OrderDetailsTable() {
+function OrderDetailsTable({ productList }) {
   return (
     <div>
       <table>
@@ -11,38 +12,49 @@ function OrderDetailsTable() {
           <th>Valor Unitário</th>
           <th>Sub-total</th>
         </tr>
-        <tr>
-          <td
-            data-testid="customer_checkout__element-order-table-item-number-<index>"
-          >
-            1
-          </td>
-          <td
-            data-testid="customer_checkout__element-order-table-name-<index>"
-          >
-            Cerveja Stella 250ml
-          </td>
-          <td
-            data-testid="customer_checkout__element-order-table-quantity-<index>"
-          >
-            4
+        {
+          productList.map((product, i) => (
+            <tr key={ product.id }>
+              <td
+                data-testid={ `customer_checkout__element-order-table-item-number-${i}` }
+              >
+                {i + 1}
+              </td>
+              <td
+                data-testid={ `customer_checkout__element-order-table-name-${i}` }
+              >
+                {product.name}
+              </td>
+              <td
+                data-testid={ `customer_checkout__element-order-table-quantity-${i}` }
+              >
+                {product.quantity}
+              </td>
+              <td
+                data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }
+              >
+                R$
+                {' '}
+                {product.price}
 
-          </td>
-          <td
-            data-testid="customer_checkout__element-order-table-unit-price-<index>"
-          >
-            R$ 4,10
-
-          </td>
-          <td
-            data-testid="customer_checkout__element-order-table-sub-total-<index>"
-          >
-            R$ 16,40
-          </td>
-        </tr>
+              </td>
+              <td
+                data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }
+              >
+                R$
+                {' '}
+                {product.price * product.quantity}
+              </td>
+            </tr>
+          ))
+        }
       </table>
     </div>
   );
 }
+
+OrderDetailsTable.propTypes = {
+  productList: PropTypes.array,
+}.isRequired;
 
 export default OrderDetailsTable;
