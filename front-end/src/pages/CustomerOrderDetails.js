@@ -25,7 +25,7 @@ function CustomerOrderDetails() {
         saleDate={ data.sale_date }
         saleStatus={ data.status }
       />
-      <OrderDetailsTable />
+      <OrderDetailsTable productList={ data.salesProducts } />
       <OrderDetailsTotalDisplay />
     </div>
   );
