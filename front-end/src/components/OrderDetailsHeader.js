@@ -1,27 +1,31 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 
-function OrderDetailsHeader() {
+function OrderDetailsHeader({ idPedido, sellerName, saleDate, saleStatus }) {
   return (
     <div>
       <span
         data-testid="customer_order_details__element-order-details-label-order-id"
       >
-        PEDIDO 0003
+        PEDIDO 000
+        {idPedido}
       </span>
       <span
         data-testid="customer_order_details__element-order-details-label-seller-name"
       >
-        P. Venda: Fulanda Pereira
+        P. Venda:
+        {' '}
+        {sellerName}
       </span>
       <span
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        07/04/2021
+        {saleDate}
       </span>
       <span
         data-testid="customer_order_details__element-order-details-label-delivery-status"
       >
-        Entregue
+        {saleStatus}
       </span>
       <button
         data-testid="customer_order_details__button-delivery-check"
@@ -32,5 +36,12 @@ function OrderDetailsHeader() {
     </div>
   );
 }
+
+OrderDetailsHeader.propTypes = {
+  idPedido: PropTypes.number,
+  sellerName: PropTypes.string,
+  saleDate: PropTypes.string,
+  saleStatus: PropTypes.string,
+}.isRequired;
 
 export default OrderDetailsHeader;
