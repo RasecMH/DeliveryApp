@@ -7,11 +7,10 @@ class SaleService extends AbstractService {
     this.model = Sale;
   }
 
-  // async create(sale) {
-  //   const { user_id, seller_id, total_price, delivery_address, delivery_number, status, salesProducts } = sale;
-  //   const newSale = await this.model.create(user_id, seller_id, total_price, delivery_address, delivery_number, status);
-  //   console.log(newSale);
-  // }
+  async create(sale) {
+    const newSale = await this.model.create(sale);
+    return newSale;
+  }
 }
 
 module.exports = SaleService;

@@ -1,14 +1,16 @@
-// const { SaleProduct } = require('../../database/models');
+const { SaleProduct } = require('../../database/models');
 
-// class SaleProductService extends AbstractService {
-//   constructor() {
-//     this.model = SaleProduct;
-//   }
+class SaleProductService {
+  constructor() {
+    this.model = SaleProduct;
+  }
 
-//   async create(sale) {
-//     const { user_id, seller_id, total_price, delivery_address, delivery_number, status, salesProducts } = sale;
+  async create(saleId, saleProduct) {
+    const newSaleProduct = await this.model.create({ 
+      saleId, productId: saleProduct.id, quantity: saleProduct.quantity, 
+    });
+    return newSaleProduct;
+  }
+}
 
-//   }
-// }
-
-// module.exports = SaleProductService;
+module.exports = SaleProductService;
