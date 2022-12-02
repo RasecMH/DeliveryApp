@@ -15,7 +15,7 @@ const ProductModel = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(9,2),
       allowNull: false
     },
-    url_image: {
+    urlImage: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: ''
