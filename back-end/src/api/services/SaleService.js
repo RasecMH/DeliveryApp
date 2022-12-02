@@ -13,7 +13,6 @@ class SaleService extends AbstractService {
   }
 
   async update(id, status) {
-    console.log(id);
     const updatedSale = await this.model.update({ status }, { where: { id } });
     return updatedSale;
   }

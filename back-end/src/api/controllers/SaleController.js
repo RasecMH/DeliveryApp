@@ -61,7 +61,6 @@ class SaleController {
       const sale = await this.service.getById(id);
       const saleProducts = await this.saleProductService.getById(id);
       const saleProductUpdated = await Promise.all(saleProducts.map(async (saleProduct) => {
-        console.log(saleProduct);
         const product = await this.productService.getById(saleProduct.productId);
         return {
           ...product.dataValues,
