@@ -11,6 +11,11 @@ class SaleProductService {
     });
     return newSaleProduct;
   }
+
+  async getById(saleId) {
+    const saleProduct = await this.model.findAll({ where: { saleId } });
+    return saleProduct;
+  }
 }
 
 module.exports = SaleProductService;

@@ -15,4 +15,7 @@ salesRouter.route('/')
 salesRouter.route('/create')
   .post((req, res, next) => saleController.create(req, res, next));
 
+salesRouter.route('/status/att')
+  .put((req, res, next) => saleController.update(req, res, next));
+
 module.exports = salesRouter;

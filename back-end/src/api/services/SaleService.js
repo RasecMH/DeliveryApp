@@ -11,6 +11,12 @@ class SaleService extends AbstractService {
     const newSale = await this.model.create(sale);
     return newSale;
   }
+
+  async update(id, status) {
+    console.log(id);
+    const updatedSale = await this.model.update({ status }, { where: { id } });
+    return updatedSale;
+  }
 }
 
 module.exports = SaleService;

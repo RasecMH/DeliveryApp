@@ -32,8 +32,6 @@ class SaleController {
 
   async create(req, res, next) {
     try {
-      // const productService = new ProductService();
-      
       const sale = req.body;
       const { salesProducts } = sale;
       const newSale = await this.service.create(sale);
@@ -50,6 +48,22 @@ class SaleController {
       }));
 
       return res.status(200).json({ ...newSale.dataValues, salesProducts: newSalesProducts });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async update(req, res, next) {
+    try {
+      const { id, status } = req.body;
+      await this.service.update(id, status);
+      
+      const sale = await this.service.getById(id);
+      const saleProducts = await this.saleProductService.getById(id);
+
+      const saleUpdate = { ...sale.dataValues, saleProducts };
+
+      return res.status(200).json(saleUpdate);
     } catch (error) {
       next(error);
     }
