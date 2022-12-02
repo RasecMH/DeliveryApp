@@ -1,9 +1,12 @@
 import React from 'react';
+import NavBar from '../components/NavBar';
+import SellerOrdersCard from '../components/SellerOrderCard';
 
 function SellerOrders() {
   return (
     <div>
-      <h1>Hello do SellerOrders</h1>
+      <NavBar userType="Seller" />
+      <SellerOrdersCard />
     </div>
   );
 }

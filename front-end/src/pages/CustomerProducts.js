@@ -1,9 +1,14 @@
 import React from 'react';
+import NavBar from '../components/NavBar';
+import ItemCard from '../components/ItemCard';
+import CartButton from '../components/CartButton';
 
 function CustomerProducts() {
   return (
     <div>
-      <h1>Hello do CustomerProducts</h1>
+      <NavBar />
+      <ItemCard />
+      <CartButton />
     </div>
   );
 }

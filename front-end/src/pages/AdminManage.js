@@ -1,9 +1,14 @@
 import React from 'react';
+import NavBar from '../components/NavBar';
+import NewUserForm from '../components/NewUserForm';
+import UsersTable from '../components/UsersTable';
 
 function AdminManage() {
   return (
     <div>
-      <h1>Hello do AdminManage</h1>
+      <NavBar userType="Admin" />
+      <NewUserForm />
+      <UsersTable />
     </div>
   );
 }
