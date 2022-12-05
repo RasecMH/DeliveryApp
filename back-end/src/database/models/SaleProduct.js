@@ -1,5 +1,5 @@
 const SaleProductModel = (sequelize, DataTypes) => {
-  const SaleProduct = sequelize.define('sales_products', {
+  const SaleProduct = sequelize.define('SaleProduct', {
     saleId: {
       type: DataTypes.INTEGER,
       primaryKey: true,

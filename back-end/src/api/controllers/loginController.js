@@ -38,18 +38,15 @@ class LoginController {
     }
   }
 
-  // async validation(req, res) {
-  //   const { authorization } = req.headers;
+  async findAll(_req, res, next) {
+    try {
+      const findAll = await this.serviceLogin.findAll();
 
-  //   if (!authorization) {
-  //     return res.status(401).json({ message: 'unauthorized' });
-  //   }
-  //   const token = authorization.replace('Bearer ', '');
-
-  //   const username = decodeToken(token);
-
-  //   res.status(200).json(username);
-  // }
+      res.status(200).json(findAll);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = LoginController;
