@@ -24,8 +24,7 @@ function LoginForm() {
       );
       setfetchError(null);
       setValue(response.data);
-
-      console.log(response.data);
+      history.push('/customer/products');
     } catch (error) {
       console.log(error.response.data);
       setfetchError(error.response.data);
