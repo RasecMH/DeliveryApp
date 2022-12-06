@@ -47,7 +47,7 @@ class SaleController {
         };
       }));
 
-      return res.status(200).json({ ...newSale.dataValues, salesProducts: newSalesProducts });
+      return res.status(201).json({ ...newSale.dataValues, salesProducts: newSalesProducts });
     } catch (error) {
       next(error);
     }
