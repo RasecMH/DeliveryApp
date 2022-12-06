@@ -57,6 +57,17 @@ class LoginController {
       next(error);
     }
   }
+
+  async remove(req, res, next) {
+    try {
+      const { id } = req.params; 
+      await this.serviceLogin.remove(id);
+
+      res.status(204).json({ message: 'Deleted' });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = LoginController;

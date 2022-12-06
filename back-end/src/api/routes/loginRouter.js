@@ -33,4 +33,9 @@ loginRouter.get(
   (req, res, next) => loginController.findAllSellers(req, res, next),
 );
 
+loginRouter.delete(
+  '/:id',
+  (req, res, next) => loginController.remove(req, res, next),
+);
+
 module.exports = loginRouter;

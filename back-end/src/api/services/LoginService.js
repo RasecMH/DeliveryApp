@@ -52,6 +52,12 @@ class loginService {
   
     return allSellers;
     }
+
+  async remove(id) {
+    await this.model.destroy({
+      where: { id },
+    });
+    }
 }
 
 module.exports = loginService;
