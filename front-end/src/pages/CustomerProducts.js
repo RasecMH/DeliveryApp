@@ -61,7 +61,9 @@ function CustomerProducts() {
           ))
         }
       </div>
-      <CartButton />
+      <CartButton
+        totalValue={ value.reduce((acc, c) => c.price * c.quantity + acc, 0) }
+      />
     </div>
   );
 }
