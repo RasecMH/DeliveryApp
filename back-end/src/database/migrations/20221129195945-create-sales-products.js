@@ -10,9 +10,9 @@ module.exports = {
         references: {
           model: 'sales',
           key: 'id',
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE'
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       product_id: {
         type: Sequelize.INTEGER,
