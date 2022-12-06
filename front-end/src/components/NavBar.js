@@ -16,6 +16,16 @@ function NavBar({ userType = 'customer' }) {
     history.push('/');
   };
 
+  const pedidosRedirect = () => {
+    if (value.role === 'seller') {
+      history.push('/seller/orders');
+    }
+
+    if (value.role === 'customer') {
+      history.push('/customer/orders');
+    }
+  };
+
   return (
     <div className="container">
       <div className="container">
@@ -34,7 +44,7 @@ function NavBar({ userType = 'customer' }) {
         <button
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
-          onClick={ () => history.push('/customer/orders') }
+          onClick={ pedidosRedirect }
 
         >
           MEUS PEDIDOS
