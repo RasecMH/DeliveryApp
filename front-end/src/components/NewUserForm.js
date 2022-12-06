@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { PropTypes } from 'prop-types';
 
-function NewUserForm() {
+function NewUserForm({ handleSubmit, fetchError }) {
+  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const passwordMinLength = 6;
+  const nameMinLength = 12;
+
   return (
     <div className="containerItem">
-      <form>
+      <form onSubmit={ handleSubmit }>
         <label htmlFor="nameInput">
           Nome:
           <input
@@ -11,6 +18,8 @@ function NewUserForm() {
             type="text"
             id="nameInput"
             placeholder="Nome e Sobrenome"
+            value={ userName }
+            onChange={ ({ target: { value } }) => setUserName(value) }
           />
         </label>
         <label htmlFor="emailInput">
@@ -20,6 +29,8 @@ function NewUserForm() {
             type="email"
             id="emailInput"
             placeholder="seu-email@site.com.br"
+            value={ email }
+            onChange={ ({ target: { value } }) => setEmail(value) }
           />
         </label>
         <label htmlFor="passwordInput">
@@ -29,6 +40,8 @@ function NewUserForm() {
             type="password"
             id="passwordInput"
             placeholder="*******"
+            value={ password }
+            onChange={ ({ target: { value } }) => setPassword(value) }
           />
         </label>
         <label htmlFor="userTypeSelect">
@@ -46,12 +59,29 @@ function NewUserForm() {
         <button
           data-testid="admin_manage__button-register"
           type="submit"
+          disabled={ !(
+            email.match(/\S+@\S+\.\S+/i)
+            && password.length >= passwordMinLength
+            && userName.length >= nameMinLength
+          ) }
         >
           CADASTRAR
         </button>
       </form>
+      {
+        fetchError && (
+          <span data-testid="admin_manage__element-invalid-register">
+            {fetchError.message}
+          </span>
+        )
+      }
     </div>
   );
 }
+
+NewUserForm.propTypes = {
+  handleSubmit: PropTypes.function,
+  fetchError: PropTypes.object,
+}.isRequired;
 
 export default NewUserForm;

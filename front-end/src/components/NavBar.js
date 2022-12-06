@@ -24,6 +24,10 @@ function NavBar({ userType = 'customer' }) {
     if (value.role === 'customer') {
       history.push('/customer/orders');
     }
+
+    if (value.role === 'administrator') {
+      history.push('/admin/manage');
+    }
   };
 
   return (
@@ -47,7 +51,11 @@ function NavBar({ userType = 'customer' }) {
           onClick={ pedidosRedirect }
 
         >
-          MEUS PEDIDOS
+          {
+            value.role === 'administrator'
+              ? 'GERENCIAR USUÁRIOS'
+              : 'MEUS PEDIDOS'
+          }
         </button>
       </div>
       <div className="container">

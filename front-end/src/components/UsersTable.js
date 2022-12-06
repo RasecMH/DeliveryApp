@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-function UsersTable({ usersInfo }) {
+function UsersTable({ usersInfo, deleteUser }) {
   return (
     <div>
       <p>Lista de usuários</p>
@@ -36,10 +36,15 @@ function UsersTable({ usersInfo }) {
               >
                 {user.role}
               </td>
-              <td
-                data-testid={ `admin_manage__element-user-table-remove-${i}` }
-              >
-                <button type="button">Excluir</button>
+              <td>
+                <button
+                  data-testid={ `admin_manage__element-user-table-remove-${i}` }
+                  onClick={ () => deleteUser(user.id) }
+                  type="button"
+                >
+                  Excluir
+
+                </button>
 
               </td>
             </tr>
@@ -52,6 +57,7 @@ function UsersTable({ usersInfo }) {
 
 UsersTable.propTypes = {
   userType: PropTypes.array,
+  deleteUser: PropTypes.function,
 }.isRequired;
 
 export default UsersTable;

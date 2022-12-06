@@ -27,6 +27,9 @@ function LoginForm() {
       if (response.data.role === 'seller') {
         return history.push('/seller/orders');
       }
+      if (response.data.role === 'administrator') {
+        return history.push('/admin/manage');
+      }
       history.push('/customer/products');
     } catch (error) {
       console.log(error.response.data);

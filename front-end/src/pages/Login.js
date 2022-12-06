@@ -10,7 +10,10 @@ function Login() {
     <div>
       {
         userData?.token ? (
-          <Redirect to={ endPoint } />
+          <Redirect
+            to={ userData?.role === 'administrator'
+              ? '/admin/manage' : endPoint }
+          />
         ) : (
           <LoginForm />
         )
