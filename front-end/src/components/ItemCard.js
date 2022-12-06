@@ -1,8 +1,9 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+
 import './ItemCard.css';
 
-function ItemCard({ index, id, price, img, description }) {
+function ItemCard({ index, id, price, img, description, addItem, removeItem, qtd }) {
   return (
     <div key={ id } className="containerItem">
       <span
@@ -25,9 +26,21 @@ function ItemCard({ index, id, price, img, description }) {
 
       </span>
       <div>
-        <button type="button">-</button>
-        <span>0</span>
-        <button type="button">+</button>
+        <button
+          onClick={ () => removeItem(id) }
+          type="button"
+        >
+          -
+
+        </button>
+        <span>{qtd}</span>
+        <button
+          onClick={ () => addItem({ id, price, urlImage: img, quantity: qtd || 1 }) }
+          type="button"
+        >
+          +
+
+        </button>
       </div>
     </div>
   );
@@ -39,6 +52,9 @@ ItemCard.propTypes = {
   price: PropTypes.number,
   img: PropTypes.string,
   description: PropTypes.string,
+  addItem: PropTypes.function,
+  removeItem: PropTypes.function,
+  qtd: PropTypes.number,
 }.isRequired;
 
 export default ItemCard;
