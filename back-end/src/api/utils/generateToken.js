@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const fs = require('fs');
 
-const secret = process.env.JWT_SECRET || 'secret_key';
+const secret = fs.readFileSync('jwt.evaluation.key', 'utf-8');
 
 const generateToken = ({ id, name, email }) => {
   const token = jwt.sign({ id, name, email }, secret, {
