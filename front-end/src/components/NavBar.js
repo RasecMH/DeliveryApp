@@ -1,10 +1,20 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { useLocalStorage } from 'react-use';
+import { useHistory } from 'react-router';
+
 import './NavBar.css';
 
 function NavBar({ userType = 'customer' }) {
-  const [value] = useLocalStorage('user');
+  const [value, , remove] = useLocalStorage('user');
+  const [, , removeCart] = useLocalStorage('cartItems');
+  const history = useHistory();
+
+  const logout = () => {
+    remove();
+    removeCart();
+    history.push('/');
+  };
 
   return (
     <div className="container">
@@ -14,6 +24,8 @@ function NavBar({ userType = 'customer' }) {
             <button
               type="button"
               data-testid="customer_products__element-navbar-link-products"
+              onClick={ () => history.push('/customer/products') }
+
             >
               PRODUTOS
             </button>
@@ -22,6 +34,8 @@ function NavBar({ userType = 'customer' }) {
         <button
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
+          onClick={ () => history.push('/customer/orders') }
+
         >
           MEUS PEDIDOS
         </button>
@@ -35,6 +49,7 @@ function NavBar({ userType = 'customer' }) {
         <button
           type="button"
           data-testid="customer_products__element-navbar-link-logout"
+          onClick={ logout }
         >
           Sair
         </button>
