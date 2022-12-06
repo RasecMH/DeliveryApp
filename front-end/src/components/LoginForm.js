@@ -24,6 +24,9 @@ function LoginForm() {
       );
       setfetchError(null);
       setValue(response.data);
+      if (response.data.role === 'seller') {
+        return history.push('/seller/orders');
+      }
       history.push('/customer/products');
     } catch (error) {
       console.log(error.response.data);
