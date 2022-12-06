@@ -3,26 +3,36 @@ import { PropTypes } from 'prop-types';
 
 import './ItemCard.css';
 
-function ItemCard({ id, price, img, description, addItem, removeItem, qtd }) {
+function ItemCard({ id, price, img, name, addItem, removeItem, qtd = 0, setItem }) {
+  const handleInputChange = ({ target: { value } }) => {
+    setItem({ id,
+      name,
+      price,
+      urlImage: img,
+      quantity: Number(value),
+    });
+  };
+  console.log(qtd);
   return (
     <div key={ id } className="containerItem">
-      <span
-        data-testid={ `customer_products__element-card-price-${id}` }
-      >
+      <span>
         R$
         {' '}
-        {price}
-
+        <span
+          data-testid={ `customer_products__element-card-price-${id}` }
+        >
+          {price.replace(/\./, ',')}
+        </span>
       </span>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ img }
-        alt={ description }
+        alt={ name }
       />
       <span
         data-testid={ `customer_products__element-card-title-${id}` }
       >
-        {description}
+        {name}
 
       </span>
       <div>
@@ -35,14 +45,17 @@ function ItemCard({ id, price, img, description, addItem, removeItem, qtd }) {
           -
 
         </button>
-        <span
+        <input
           data-testid={ `customer_products__input-card-quantity-${id}` }
-        >
-          {qtd}
-
-        </span>
+          type="number"
+          id="productQtdInput"
+          placeholder="0"
+          value={ qtd }
+          onChange={ handleInputChange }
+        />
         <button
-          onClick={ () => addItem({ id, price, urlImage: img, quantity: qtd || 1 }) }
+          onClick={ () => addItem({
+            id, name, price, urlImage: img, quantity: 1 }) }
           type="button"
           data-testid={ `customer_products__button-card-add-item-${id}` }
 
@@ -57,11 +70,12 @@ function ItemCard({ id, price, img, description, addItem, removeItem, qtd }) {
 
 ItemCard.propTypes = {
   id: PropTypes.number,
+  name: PropTypes.string,
   price: PropTypes.number,
   img: PropTypes.string,
-  description: PropTypes.string,
   addItem: PropTypes.function,
   removeItem: PropTypes.function,
+  setItem: PropTypes.function,
   qtd: PropTypes.number,
 }.isRequired;
 

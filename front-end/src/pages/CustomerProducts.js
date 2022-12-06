@@ -32,6 +32,19 @@ function CustomerProducts() {
     }
   };
 
+  const setItemOnLocalStorage = ({ id, name, price, urlImage, quantity }) => {
+    const hasItem = value.findIndex((item) => item.id === id);
+    if (hasItem >= 0 && quantity > 0) {
+      value[hasItem].quantity = quantity;
+      return setValue([...value]);
+    }
+    if (hasItem >= 0 && quantity <= 0) {
+      value.splice(hasItem, 1);
+      return setValue([...value]);
+    }
+    return setValue([...value, { id, name, price, urlImage, quantity }]);
+  };
+
   useEffect(() => {
     const init = async () => {
       const response = await axios.get('http://localhost:3001/products');
@@ -52,10 +65,11 @@ function CustomerProducts() {
               id={ product.id }
               price={ product.price }
               img={ product.urlImage }
-              description={ product.name }
+              name={ product.name }
               addItem={ addItemToLocalStorage }
               removeItem={ removeItemFromLocalStorage }
-              qtd={ value.find((item) => item.id === product.id)?.quantity || 0 }
+              setItem={ setItemOnLocalStorage }
+              qtd={ value.find((item) => item.id === product.id)?.quantity }
             />
           ))
         }
