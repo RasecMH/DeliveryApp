@@ -5,11 +5,12 @@ import LoginForm from '../components/LoginForm';
 
 function Login() {
   const [userData] = useLocalStorage('user');
+  const endPoint = userData?.role === 'seller' ? '/seller/orders' : '/customer/products';
   return (
     <div>
       {
         userData?.token ? (
-          <Redirect to="/customer/products" />
+          <Redirect to={ endPoint } />
         ) : (
           <LoginForm />
         )

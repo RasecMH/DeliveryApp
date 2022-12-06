@@ -1,7 +1,22 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { useHistory } from 'react-router';
+import axios from 'axios';
 
 function OrderDetailsHeader({ idPedido, sellerName, saleDate, saleStatus }) {
+  const history = useHistory();
+
+  const attStatus = async () => {
+    try {
+      await axios.put(
+        'http://localhost:3001/sales/status/att',
+        { id: idPedido, status: 'Entregue' },
+      );
+      history.go(0);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
   return (
     <div>
       <span
@@ -10,17 +25,19 @@ function OrderDetailsHeader({ idPedido, sellerName, saleDate, saleStatus }) {
         PEDIDO 000
         {idPedido}
       </span>
+      <span>
+        P. Venda:
+        {' '}
+      </span>
       <span
         data-testid="customer_order_details__element-order-details-label-seller-name"
       >
-        P. Venda:
-        {' '}
         {sellerName}
       </span>
       <span
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        {saleDate}
+        {saleDate.toLocaleDateString()}
       </span>
       <span
         data-testid="customer_order_details__element-order-details-label-delivery-status"
@@ -28,7 +45,9 @@ function OrderDetailsHeader({ idPedido, sellerName, saleDate, saleStatus }) {
         {saleStatus}
       </span>
       <button
+        onClick={ attStatus }
         data-testid="customer_order_details__button-delivery-check"
+        disabled={ saleStatus !== 'Em Trânsito' }
         type="button"
       >
         MARCAR COMO ENTREGUE

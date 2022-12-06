@@ -7,7 +7,7 @@ function OrderDetailsTotalDisplay({ totalPrice }) {
       <span data-testid="customer_order_details__element-order-total-price">
         Total: R$
         {' '}
-        {totalPrice}
+        {totalPrice?.replace(/\./, ',')}
       </span>
     </div>
   );

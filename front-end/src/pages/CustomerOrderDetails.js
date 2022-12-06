@@ -1,32 +1,36 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import OrderDetailsHeader from '../components/OrderDetailsHeader';
 import OrderDetailsTable from '../components/OrderDetailsTable';
 import OrderDetailsTotalDisplay from '../components/OrderDetailsTotalDisplay';
-import saleDetailsInfo from '../utils/mocks/createSaleMock.json';
 
 function CustomerOrderDetails() {
   const [data, setData] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     const init = async () => {
-      const saleData = saleDetailsInfo;
-      setData(saleData);
+      const saleId = location.pathname.split('/')[3];
+      const response = await axios.get(`http://localhost:3001/sales/${saleId}`);
+      setData(response.data);
+      console.log(response.data);
     };
-
     init();
   }, []);
+
   return (
     <div>
       <NavBar />
       <OrderDetailsHeader
         idPedido={ data.id }
-        sellerName={ data.seller_name }
-        saleDate={ data.sale_date }
+        sellerName={ data.seller?.name }
+        saleDate={ new Date(Date.parse(data.saleDate)) }
         saleStatus={ data.status }
       />
-      <OrderDetailsTable productList={ data.salesProducts } />
-      <OrderDetailsTotalDisplay totalPrice={ data.total_price } />
+      <OrderDetailsTable productList={ data.saleProducts } />
+      <OrderDetailsTotalDisplay totalPrice={ data.totalPrice } />
     </div>
   );
 }
