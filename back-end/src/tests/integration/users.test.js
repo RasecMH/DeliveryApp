@@ -19,7 +19,7 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Teste /users', function() {
-  describe('Rota /all', function() {
+  describe('Rota /users/all', function() {
     let chaiHttpResponse;
     
     afterEach(() => {
@@ -38,8 +38,12 @@ describe('Teste /users', function() {
     });
   });
 
-  describe('Rota /validate', function() {
+  describe('Rota /users/validate', function() {
     let chaiHttpResponse;
+
+    afterEach(() => {
+      sinon.restore();
+    });
 
     it('A rota GET /users/validate retorna mensagem de erro quando token não for enviado na requisição', async function() {
       chaiHttpResponse = await chai
@@ -70,6 +74,18 @@ describe('Teste /users', function() {
   
       expect(chaiHttpResponse.status).to.be.eq(401);
       expect(chaiHttpResponse.body).to.be.deep.eq({ message: 'Expired or invalid token' });
+    });
+
+    it('A rota GET /users/validate retorna a role do usuário', async function() {
+      sinon.stub(jwt, 'verify').returns(ALL_USERS[0]);
+
+      chaiHttpResponse = await chai
+         .request(app)
+         .get('/users/validate')
+         .set({ "Authorization": 'VALID_TOKEN' });
+  
+      expect(chaiHttpResponse.status).to.be.eq(200);
+      expect(chaiHttpResponse.body).to.be.deep.eq({ role: 'admin' });
     });
   });
 });

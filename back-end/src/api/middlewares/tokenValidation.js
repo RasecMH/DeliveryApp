@@ -25,7 +25,7 @@ try {
   
   req.user = user;
 
-  res.status(200).json(user);
+  res.status(200).json({ role: user.role });
 } catch (_error) {
   return next({ type: 'UNAUTHORIZED_USER', message: 'Expired or invalid token' });
   }
