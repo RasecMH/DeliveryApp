@@ -46,11 +46,10 @@ function CustomerProducts() {
       <NavBar />
       <div className="itemsContainer">
         {
-          products.map((product, i) => (
+          products.map((product) => (
             <ItemCard
               key={ product.id }
               id={ product.id }
-              index={ i }
               price={ product.price }
               img={ product.urlImage }
               description={ product.name }

@@ -3,11 +3,11 @@ import { PropTypes } from 'prop-types';
 
 import './ItemCard.css';
 
-function ItemCard({ index, id, price, img, description, addItem, removeItem, qtd }) {
+function ItemCard({ id, price, img, description, addItem, removeItem, qtd }) {
   return (
     <div key={ id } className="containerItem">
       <span
-        data-testid={ `customer_products__element-card-price-${index}` }
+        data-testid={ `customer_products__element-card-price-${id}` }
       >
         R$
         {' '}
@@ -15,12 +15,12 @@ function ItemCard({ index, id, price, img, description, addItem, removeItem, qtd
 
       </span>
       <img
-        data-testid={ `customer_products__img-card-bg-image-${index}` }
+        data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ img }
         alt={ description }
       />
       <span
-        data-testid={ `customer_products__element-card-title-${index}` }
+        data-testid={ `customer_products__element-card-title-${id}` }
       >
         {description}
 
@@ -47,7 +47,6 @@ function ItemCard({ index, id, price, img, description, addItem, removeItem, qtd
 }
 
 ItemCard.propTypes = {
-  index: PropTypes.number,
   id: PropTypes.number,
   price: PropTypes.number,
   img: PropTypes.string,
