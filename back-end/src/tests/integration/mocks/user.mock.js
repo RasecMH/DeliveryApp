@@ -1,4 +1,4 @@
-const allUsers = [
+const ALL_USERS = [
   {
     id: 1,
     name: 'Lewis Hamilton',
@@ -15,7 +15,7 @@ const allUsers = [
   }
 ]
 
-const allUsersResponse = [
+const ALL_USERS_RESPONSE = [
   {
     id: 1,
     name: 'Lewis Hamilton',
@@ -28,9 +28,20 @@ const allUsersResponse = [
     email: 'MichaelSchumacher@gmail.com',
     role: 'user',
   }
-]
+];
+
+const INVALID_TOKEN = 'INVALID_TOKEN';
+
+const USER_NOT_FOUND = {
+  name: 'NOT FOUND',
+  email: 'notFound@found.com',
+  password: 'xxxxxxxxxx',
+  role: 'admin',
+}
 
 module.exports = {
-  allUsers,
-  allUsersResponse,
+  ALL_USERS,
+  ALL_USERS_RESPONSE,
+  INVALID_TOKEN,
+  USER_NOT_FOUND,
 }
