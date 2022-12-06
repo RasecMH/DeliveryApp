@@ -11,16 +11,19 @@ function CartButton({ totalValue }) {
         type="button"
         data-testid="customer_products__button-cart"
         onClick={ () => history.push('/customer/checkout') }
+        disabled={ totalValue === 0 }
       >
         Ver Carrinho:
-        <span
-          data-testid="customer_products__checkout-bottom-value"
-        >
+        <span>
           R$
           {' '}
-          {
-            totalValue.toFixed(2)
-          }
+          <span
+            data-testid="customer_products__checkout-bottom-value"
+          >
+            {
+              totalValue.toFixed(2).replace(/\./, ',')
+            }
+          </span>
         </span>
       </button>
     </div>
