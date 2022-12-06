@@ -30,7 +30,10 @@ function OrdersCard({ id, status, date, price }) {
         <p
           data-testid={ `customer_orders__element-order-date-${id}` }
         >
-          {date.toLocaleDateString()}
+          {date.toLocaleDateString(
+            'pt-BR',
+            { year: 'numeric', month: '2-digit', day: '2-digit' },
+          )}
 
         </p>
         <p

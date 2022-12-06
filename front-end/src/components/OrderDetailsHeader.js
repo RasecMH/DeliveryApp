@@ -37,7 +37,10 @@ function OrderDetailsHeader({ idPedido, sellerName, saleDate, saleStatus }) {
       <span
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        {saleDate.toLocaleDateString()}
+        {saleDate.toLocaleDateString(
+          'pt-BR',
+          { year: 'numeric', month: '2-digit', day: '2-digit' },
+        )}
       </span>
       <span
         data-testid="customer_order_details__element-order-details-label-delivery-status"
