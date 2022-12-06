@@ -1,23 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-// import { useHistory } from 'react-router';
-import axios from 'axios';
 
-function SellerOrderDetailsHeader({ idPedido, saleDate, saleStatus }) {
-  // const history = useHistory();
-
-  const attStatus = async (stat) => {
-    try {
-      await axios.put(
-        'http://localhost:3001/sales/status/att',
-        { id: idPedido, status: stat },
-      );
-      // history.go(0);
-    } catch (error) {
-      console.log(error.response.data);
-    }
-  };
-
+function SellerOrderDetailsHeader({ idPedido, saleDate, saleStatus, attStatus }) {
   return (
     <div>
       <span
@@ -65,6 +49,7 @@ SellerOrderDetailsHeader.propTypes = {
   sellerName: PropTypes.string,
   saleDate: PropTypes.string,
   saleStatus: PropTypes.string,
+  attStatus: PropTypes.function,
 }.isRequired;
 
 export default SellerOrderDetailsHeader;

@@ -20,6 +20,20 @@ function CustomerOrderDetails() {
     init();
   }, []);
 
+  const attStatus = async (stat) => {
+    try {
+      await axios.put(
+        'http://localhost:3001/sales/status/att',
+        { id: data.id, status: stat },
+      );
+      const newData = { ...data };
+      newData.status = stat;
+      setData(newData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <NavBar />
@@ -28,6 +42,7 @@ function CustomerOrderDetails() {
         sellerName={ data.seller?.name }
         saleDate={ new Date(Date.parse(data.saleDate)) }
         saleStatus={ data.status }
+        attStatus={ attStatus }
       />
       <OrderDetailsTable productList={ data.saleProducts } />
       <OrderDetailsTotalDisplay totalPrice={ data.totalPrice } />

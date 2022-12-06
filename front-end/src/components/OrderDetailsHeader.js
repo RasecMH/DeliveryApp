@@ -1,23 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
-// import { useHistory } from 'react-router';
-import axios from 'axios';
 
-function OrderDetailsHeader({ idPedido, sellerName, saleDate, saleStatus }) {
-  // const history = useHistory();
-  const [statusPed, setStatusPed] = useState(saleStatus);
-  const attStatus = async () => {
-    try {
-      await axios.put(
-        'http://localhost:3001/sales/status/att',
-        { id: idPedido, status: 'Entregue' },
-      );
-      setStatusPed('Entregue');
-      // history.go(0);
-    } catch (error) {
-      console.log(error.response.data);
-    }
-  };
+function OrderDetailsHeader({ idPedido, sellerName, saleDate, saleStatus, attStatus }) {
   return (
     <div>
       <span
@@ -46,14 +30,12 @@ function OrderDetailsHeader({ idPedido, sellerName, saleDate, saleStatus }) {
       <span
         data-testid="customer_order_details__element-order-details-label-delivery-status"
       >
-        {
-          statusPed === 'Entregue' ? statusPed : saleStatus
-        }
+        { saleStatus }
       </span>
       <button
-        onClick={ attStatus }
+        onClick={ () => attStatus('Entregue') }
         data-testid="customer_order_details__button-delivery-check"
-        disabled={ saleStatus !== 'Em Trânsito' || statusPed === 'Entregue' }
+        disabled={ saleStatus !== 'Em Trânsito' }
         type="button"
       >
         MARCAR COMO ENTREGUE
@@ -67,6 +49,7 @@ OrderDetailsHeader.propTypes = {
   sellerName: PropTypes.string,
   saleDate: PropTypes.string,
   saleStatus: PropTypes.string,
+  attStatus: PropTypes.function,
 }.isRequired;
 
 export default OrderDetailsHeader;

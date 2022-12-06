@@ -19,6 +19,21 @@ function SellerOrderDetails() {
     };
     init();
   }, []);
+
+  const attStatus = async (stat) => {
+    try {
+      await axios.put(
+        'http://localhost:3001/sales/status/att',
+        { id: data.id, status: stat },
+      );
+      const newData = { ...data };
+      newData.status = stat;
+      setData(newData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <NavBar userType="Seller" />
@@ -26,6 +41,7 @@ function SellerOrderDetails() {
         idPedido={ data.id }
         saleDate={ new Date(Date.parse(data.saleDate)) }
         saleStatus={ data.status }
+        attStatus={ attStatus }
       />
       <SellerOrderDetailsTable productList={ data.saleProducts } />
       <SellerOrderDetailsTotalDisplay totalPrice={ data.totalPrice } />
