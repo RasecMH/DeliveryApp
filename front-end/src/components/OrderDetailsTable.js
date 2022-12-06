@@ -35,7 +35,7 @@ function OrderDetailsTable({ productList }) {
               >
                 R$
                 {' '}
-                {product.price}
+                {product.price.replace(/\./, ',')}
 
               </td>
               <td
@@ -43,7 +43,7 @@ function OrderDetailsTable({ productList }) {
               >
                 R$
                 {' '}
-                {product.price * product.quantity}
+                {(product.price * product.quantity).toFixed(2).replace(/\./, ',')}
               </td>
             </tr>
           ))

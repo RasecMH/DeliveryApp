@@ -1,34 +1,59 @@
 import React from 'react';
 import './OrdersCard.css';
+import { PropTypes } from 'prop-types';
+import { useHistory } from 'react-router';
 
-function SellerOrdersCard() {
+function SellerOrdersCard({ id, status, date, price, address }) {
+  const history = useHistory();
+
   return (
-    <div className="OrderContainer">
-      <div data-testid="seller_orders__element-order-id-<id>">
+    <button
+      onClick={ () => history.push(`/seller/orders/${id}`) }
+      type="button"
+      className="OrderContainer"
+    >
+      <div>
         <p>Pedido</p>
-        <p>0001</p>
+        <p data-testid={ `seller_orders__element-order-id-${id}` }>{id}</p>
       </div>
       <div>
         <div className="OrderContainer">
           <p
-            data-testid="seller_orders__element-delivery-status-<id>"
+            data-testid={ `seller_orders__element-delivery-status-${id}` }
           >
-            PENDENTE
+            {status}
           </p>
           <div>
-            <p data-testid="seller_orders__element-order-date-<id>">08/04/21</p>
-            <p data-testid="seller_orders__element-card-price-<id>">R$ 23,80</p>
+            <p
+              data-testid={ `seller_orders__element-order-date-${id}` }
+            >
+              {date.toLocaleDateString()}
+            </p>
+            R$
+            <span
+              data-testid={ `seller_orders__element-card-price-${id}` }
+            >
+              {price.replace(/\./, ',')}
+            </span>
           </div>
         </div>
         <p
-          data-testid="seller_orders__element-card-address-<id>"
+          data-testid={ `seller_orders__element-card-address-${id}` }
         >
-          Rua Irmãos Monteiro, Bairo Pedras, 851
+          {address}
 
         </p>
       </div>
-    </div>
+    </button>
   );
 }
+
+SellerOrdersCard.propTypes = {
+  id: PropTypes.number,
+  status: PropTypes.string,
+  date: PropTypes.string,
+  price: PropTypes.number,
+  address: PropTypes.string,
+}.isRequired;
 
 export default SellerOrdersCard;
