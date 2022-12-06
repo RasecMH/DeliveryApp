@@ -29,14 +29,23 @@ function ItemCard({ id, price, img, description, addItem, removeItem, qtd }) {
         <button
           onClick={ () => removeItem(id) }
           type="button"
+          data-testid={ `customer_products__button-card-rm-item-${id}` }
+
         >
           -
 
         </button>
-        <span>{qtd}</span>
+        <span
+          data-testid={ `customer_products__input-card-quantity-${id}` }
+        >
+          {qtd}
+
+        </span>
         <button
           onClick={ () => addItem({ id, price, urlImage: img, quantity: qtd || 1 }) }
           type="button"
+          data-testid={ `customer_products__button-card-add-item-${id}` }
+
         >
           +
 
