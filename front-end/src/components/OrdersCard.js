@@ -1,24 +1,57 @@
 import React from 'react';
 import './OrdersCard.css';
+import { PropTypes } from 'prop-types';
+import { useHistory } from 'react-router';
 
-function OrdersCard() {
+function OrdersCard({ id, status, date, price }) {
+  const history = useHistory();
+
   return (
-    <div className="OrderContainer">
-      <div data-testid="customer_orders__element-order-id-<id>">
+    <button
+      onClick={ () => history.push(`/customer/orders/${id}`) }
+      type="button"
+      className="OrderContainer"
+    >
+      <div>
         <p>Pedido</p>
-        <p>0001</p>
+        <p
+          data-testid={ `customer_orders__element-order-id-${id}` }
+        >
+          {id}
+
+        </p>
       </div>
       <p
-        data-testid="customer_orders__element-delivery-status-<id>"
+        data-testid={ `customer_orders__element-delivery-status-${id}` }
       >
-        PENDENTE
+        {status}
       </p>
       <div>
-        <p data-testid="customer_orders__element-order-date-<id>">08/04/21</p>
-        <p data-testid="customer_orders__element-card-price-<id>">R$ 23,80</p>
+        <p
+          data-testid={ `customer_orders__element-order-date-${id}` }
+        >
+          {date.toLocaleDateString()}
+
+        </p>
+        <p
+          data-testid={ `customer_orders__element-card-price-${id}` }
+        >
+          R$
+          <span data-testid={ `customer_orders__element-card-price-${id}` }>
+            {price.replace(/\./, ',')}
+          </span>
+
+        </p>
       </div>
-    </div>
+    </button>
   );
 }
+
+OrdersCard.propTypes = {
+  id: PropTypes.number,
+  status: PropTypes.string,
+  date: PropTypes.string,
+  price: PropTypes.number,
+}.isRequired;
 
 export default OrdersCard;
