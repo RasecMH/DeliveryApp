@@ -13,7 +13,7 @@ function OrderDetailsTable({ productList }) {
           <th>Sub-total</th>
         </tr>
         {
-          productList.map((product, i) => (
+          productList?.map((product, i) => (
             <tr key={ product.id }>
               <td
                 data-testid={ `customer_checkout__element-order-table-item-number-${i}` }

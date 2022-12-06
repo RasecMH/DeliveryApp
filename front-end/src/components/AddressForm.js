@@ -1,9 +1,55 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import { useLocalStorage } from 'react-use';
 
 function AddressForm() {
+  const [sellers, setSellers] = useState([]);
+  const [address, setAddress] = useState('');
+  const [addressNumber, setAddressNumber] = useState('');
+  const [cartItems, , removeCart] = useLocalStorage('cartItems');
+  const [userData] = useLocalStorage('user');
+  const history = useHistory();
+
+  useEffect(() => {
+    const init = async () => {
+      const response = await axios.get('http://localhost:3001/users/all/sellers');
+      setSellers(response.data);
+    };
+    init();
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const sale = {
+      userId: userData.id,
+      sellerId: e.target.sellerSelect.value,
+      totalPrice: cartItems.reduce((acc, c) => c.price * c.quantity + acc, 0),
+      deliveryAddress: e.target.addressInput.value,
+      deliveryNumber: e.target.numberInput.value,
+      status: 'Pendente',
+      salesProducts: [...cartItems],
+    };
+
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/sales/create',
+        sale,
+        { headers: {
+          Authorization: userData.token,
+        } },
+      );
+      removeCart();
+      console.log(response.data);
+      history.push(`/customer/orders/${response.data.id}`);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
   return (
     <div className="containerItem">
-      <form>
+      <form onSubmit={ handleSubmit }>
         <label htmlFor="sellerSelect">
           P. Vendedora Responsável:
           <select
@@ -11,7 +57,16 @@ function AddressForm() {
             name="sellerSelect"
             id="sellerSelect"
           >
-            <option value="2">Fulana Pereira</option>
+            {
+              sellers.map((seller) => (
+                <option
+                  key={ seller.id }
+                  value={ seller.id }
+                >
+                  {seller.name}
+                </option>
+              ))
+            }
           </select>
         </label>
         <label htmlFor="addressInput">
@@ -21,6 +76,8 @@ function AddressForm() {
             type="text"
             id="addressInput"
             placeholder="Travessa Terceira, Bairro Murici"
+            value={ address }
+            onChange={ ({ target: { value } }) => setAddress(value) }
           />
         </label>
         <label htmlFor="numberInput">
@@ -30,6 +87,8 @@ function AddressForm() {
             type="number"
             id="numberInput"
             placeholder="198"
+            value={ addressNumber }
+            onChange={ ({ target: { value } }) => setAddressNumber(value) }
           />
         </label>
         <button

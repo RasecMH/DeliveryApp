@@ -28,4 +28,9 @@ loginRouter.get(
   (req, res, next) => loginController.findAll(req, res, next),
 );
 
+loginRouter.get(
+  '/all/sellers',
+  (req, res, next) => loginController.findAllSellers(req, res, next),
+);
+
 module.exports = loginRouter;
