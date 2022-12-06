@@ -1,5 +1,6 @@
-const LoginService = require('../services/loginService');
+const LoginService = require('../services/LoginService');
 const generateToken = require('../utils/generateToken');
+// const decodeToken = require('../utils/decodeToken');
 
 class LoginController {
   constructor() {
@@ -14,7 +15,7 @@ class LoginController {
 
       const token = generateToken(user);
 
-      const answer = { login: user.name, email: user.email, role: user.role, token };
+      const answer = { name: user.name, email: user.email, role: user.role, token };
       res.status(201).json(answer);
     } catch (error) {
       next(error);
@@ -42,6 +43,27 @@ class LoginController {
       const findAll = await this.serviceLogin.findAll();
 
       res.status(200).json(findAll);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async findAllSellers(_req, res, next) {
+    try {
+      const findAllSellers = await this.serviceLogin.findAllSellers();
+
+      res.status(200).json(findAllSellers);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async remove(req, res, next) {
+    try {
+      const { id } = req.params; 
+      await this.serviceLogin.remove(id);
+
+      res.status(204).json({ message: 'Deleted' });
     } catch (error) {
       next(error);
     }

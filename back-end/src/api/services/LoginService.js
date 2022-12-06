@@ -22,14 +22,14 @@ class loginService {
 
  async findUser(email, password) {
   const passwordCompare = md5(password);
-  const { dataValues } = await this.model.findOne({ 
+  const dataValues = await this.model.findOne({ 
     where: { email, password: passwordCompare }, 
-    attributes: { exclude: ['id', 'password'] }, 
+    attributes: { exclude: ['password'] }, 
   });
 
   if (!dataValues) throw new CustomError('NOT_FOUND', 'Incorrect username or password');
 
-  return dataValues;
+  return dataValues.dataValues;
   }
 
   async findAll() {
@@ -40,6 +40,23 @@ class loginService {
     if (!allUser) throw new CustomError('NOT_FOUND', 'Not found Users');
   
     return allUser;
+    }
+
+  async findAllSellers() {
+    const allSellers = await this.model.findAll({
+      where: { role: 'seller' },
+      attributes: { exclude: ['password'] },
+    });
+  
+    if (!allSellers) throw new CustomError('NOT_FOUND', 'Not found Sellers');
+  
+    return allSellers;
+    }
+
+  async remove(id) {
+    await this.model.destroy({
+      where: { id },
+    });
     }
 }
 

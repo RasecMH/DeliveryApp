@@ -1,9 +1,38 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import NavBar from '../components/NavBar';
+import SellerOrdersCard from '../components/SellerOrderCard';
+import './CustomerOrders.css';
 
 function SellerOrders() {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const init = async () => {
+      const response = await axios.get('http://localhost:3001/sales');
+      setOrders(response.data);
+      console.log(response.data);
+    };
+    init();
+  }, []);
   return (
     <div>
-      <h1>Hello do SellerOrders</h1>
+      <NavBar userType="Seller" />
+      <div className="ordersContainers">
+        {
+          orders.map((order) => (
+            <SellerOrdersCard
+              key={ order.id }
+              id={ order.id }
+              status={ order.status }
+              date={ new Date(Date.parse(order.saleDate)) }
+              price={ order.totalPrice }
+              address={ `${order.deliveryAddress}, ${order.deliveryNumber}` }
+            />
+
+          ))
+        }
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const loginRouter = require('./routes/loginRouter');
 const handleError = require('./middlewares/handleError');
 const productRouter = require('./routes/productRouter');
@@ -6,6 +7,7 @@ const salesRouter = require('./routes/salesRouter');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 app.use('/users', loginRouter);

@@ -6,15 +6,18 @@ const SaleModel = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
-      allowNull: false
+      allowNull: false,
+      onDelete: 'CASCADE'
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      onDelete: 'CASCADE'
     },
     sellerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      onDelete: 'CASCADE'
     },
     totalPrice: {
       type: DataTypes.DECIMAL(9,2),
@@ -46,10 +49,10 @@ const SaleModel = (sequelize, DataTypes) => {
 
   Sale.associate = (models) => {
     Sale.belongsTo(models.User,
-      {foreignKey: 'userId', as: 'users'}
+      {foreignKey: 'userId', as: 'users', onDelete: 'CASCADE'}
       );
     Sale.belongsTo(models.User,
-      {foreignKey: 'sellerId', as: 'seller'}
+      {foreignKey: 'sellerId', as: 'seller', onDelete: 'CASCADE'}
         )
   };
 

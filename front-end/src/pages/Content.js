@@ -1,10 +1,9 @@
-import React from 'react';
+// import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 function Content() {
   return (
-    <div>
-      <h1>Hello do Content</h1>
-    </div>
+    <Redirect to="/login" />
   );
 }
 

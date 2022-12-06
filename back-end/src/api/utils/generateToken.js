@@ -1,6 +1,5 @@
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 
 const secret = fs.readFileSync('jwt.evaluation.key', 'utf-8') || 'secret_key';
 

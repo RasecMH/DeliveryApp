@@ -23,8 +23,15 @@ class SaleController {
     try {
       const { id } = req.params;
       const result = await this.service.getById(id);
-
-      return res.status(200).json(result);
+      const sales = await this.saleProductService.getById(id);
+      const saleProducts = await Promise.all(sales.map(async (product) => {
+        const findProduct = await this.productService.getById(product.productId);
+        return {
+          ...findProduct.dataValues,
+          quantity: product.quantity,
+        };
+      }));
+      return res.status(200).json({ ...result.dataValues, saleProducts });
     } catch (error) {
       next(error);
     }
@@ -46,7 +53,7 @@ class SaleController {
         };
       }));
 
-      return res.status(200).json({ ...newSale.dataValues, salesProducts: newSalesProducts });
+      return res.status(201).json({ ...newSale.dataValues, salesProducts: newSalesProducts });
     } catch (error) {
       next(error);
     }
