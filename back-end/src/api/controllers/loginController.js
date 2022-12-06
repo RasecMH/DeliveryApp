@@ -15,7 +15,7 @@ class LoginController {
 
       const token = generateToken(user);
 
-      const answer = { login: user.name, email: user.email, role: user.role, token };
+      const answer = { name: user.name, email: user.email, role: user.role, token };
       res.status(201).json(answer);
     } catch (error) {
       next(error);
