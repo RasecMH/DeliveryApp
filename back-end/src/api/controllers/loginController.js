@@ -47,6 +47,16 @@ class LoginController {
       next(error);
     }
   }
+
+  async findAllSellers(_req, res, next) {
+    try {
+      const findAllSellers = await this.serviceLogin.findAllSellers();
+
+      res.status(200).json(findAllSellers);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = LoginController;
