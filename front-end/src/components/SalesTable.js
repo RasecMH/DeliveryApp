@@ -43,20 +43,25 @@ function SalesTable() {
                 {item.quantity}
 
               </td>
-              <td
-                data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }
-              >
+              <td>
                 R$
                 {' '}
-                {item.price}
+                <span
+                  data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }
+                >
+                  {item.price.replace(/\./, ',')}
 
+                </span>
               </td>
-              <td
-                data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }
-              >
+              <td>
                 R$
                 {' '}
-                {(item.price * item.quantity).toFixed(2)}
+                <span
+                  data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }
+                >
+                  {(item.price * item.quantity).toFixed(2).replace(/\./, ',')}
+
+                </span>
               </td>
               <td>
                 <button
@@ -75,7 +80,9 @@ function SalesTable() {
       <p>
         TOTAL DO PEDIDO R$
         {' '}
-        {value.reduce((acc, c) => c.price * c.quantity + acc, 0).toFixed(2)}
+        <span data-testid="customer_checkout__element-order-total-price">
+          {value.reduce((acc, c) => c.price * c.quantity + acc, 0).toFixed(2).replace(/\./, ',')}
+        </span>
       </p>
     </div>
   );
