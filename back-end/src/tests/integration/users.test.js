@@ -150,7 +150,7 @@ describe('Teste /users', function() {
       expect(chaiHttpResponse.body).to.be.deep.eq({ message: "Incorrect username or password" });
     });
 
-    it.only('Testa resposta se login foi feito corretamente', async function (){
+    it('Testa resposta se login foi feito corretamente', async function (){
       const userTest = {
         name: ALL_USERS[0].name,
         email: ALL_USERS[0].email,
