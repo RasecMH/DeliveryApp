@@ -38,14 +38,10 @@ class LoginController {
     }
   }
 
-  async findAll(_req, res, next) {
-    try {
-      const findAll = await this.serviceLogin.findAll();
+  async findAll(_req, res, _next) {
+      const usersList = await this.serviceLogin.findAll();
 
-      res.status(200).json(findAll);
-    } catch (error) {
-      next(error);
-    }
+      res.status(200).json(usersList);
   }
 
   async findAllSellers(_req, res, next) {

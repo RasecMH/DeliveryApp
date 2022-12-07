@@ -42,8 +42,6 @@ class loginService {
       attributes: { exclude: ['password'] },
     });
   
-    if (!allUser) throw new CustomError('NOT_FOUND', 'Not found Users');
-  
     return allUser;
     }
 
