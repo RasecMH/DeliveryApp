@@ -268,4 +268,30 @@ describe('Teste /users', function() {
       expect(chaiHttpResponse.body).to.not.have.property('password');
     });
   });
+
+  describe('Removendo um usuário', function (){
+    let chaiHttpResponse;
+    
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Remove um usuário corretamente pelo id', async function (){
+      chaiHttpResponse = await chai
+        .request(app)
+        .delete('/users/9999');
+
+      expect(chaiHttpResponse.status).to.be.eq(204);
+    });
+
+    it('Retorna a mensagem de erro caso algo dê errado', async function (){
+      sinon.stub(User, 'destroy').throws(new Error('any error'));
+      chaiHttpResponse = await chai
+        .request(app)
+        .delete('/users/9999');
+
+      expect(chaiHttpResponse.status).to.be.eq(500);
+      expect(chaiHttpResponse.body.message).to.be.eq('any error');
+    });
+  });
 });
