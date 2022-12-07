@@ -39,19 +39,15 @@ class LoginController {
   }
 
   async findAll(_req, res, _next) {
-      const usersList = await this.serviceLogin.findAll();
+    const usersList = await this.serviceLogin.findAll();
 
-      res.status(200).json(usersList);
+    res.status(200).json(usersList);
   }
 
-  async findAllSellers(_req, res, next) {
-    try {
-      const findAllSellers = await this.serviceLogin.findAllSellers();
+  async findAllSellers(_req, res, _next) {
+    const findAllSellers = await this.serviceLogin.findAllSellers();
 
-      res.status(200).json(findAllSellers);
-    } catch (error) {
-      next(error);
-    }
+    res.status(200).json(findAllSellers);
   }
 
   async remove(req, res, next) {

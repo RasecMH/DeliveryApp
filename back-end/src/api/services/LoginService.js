@@ -51,8 +51,6 @@ class loginService {
       attributes: { exclude: ['password'] },
     });
   
-    if (!allSellers) throw new CustomError('NOT_FOUND', 'Not found Sellers');
-  
     return allSellers;
     }
 

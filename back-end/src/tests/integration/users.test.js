@@ -48,6 +48,17 @@ describe('Teste /users', function() {
       expect(chaiHttpResponse.status).to.be.eq(200);
       expect(chaiHttpResponse.body).to.be.deep.eq(ALL_USERS_RESPONSE);
     });
+
+    it('A rota GET /users/all/sellers retorna todos os vendedores cadastrados', async function() {
+      sinon.stub(User, 'findAll').resolves([ALL_USERS_RESPONSE[1]]);
+  
+      chaiHttpResponse = await chai
+         .request(app)
+         .get('/users/all/sellers');
+  
+      expect(chaiHttpResponse.status).to.be.eq(200);
+      expect(chaiHttpResponse.body).to.be.deep.eq([ALL_USERS_RESPONSE[1]]);
+    });
   });
 
   describe('Rota /users/validate', function() {

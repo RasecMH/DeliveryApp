@@ -11,7 +11,7 @@ const ALL_USERS = [
     name: 'Michael Schumacher',
     email: 'MichaelSchumacher@gmail.com',
     password: '123456',
-    role: 'user',
+    role: 'seller',
   }
 ]
 
