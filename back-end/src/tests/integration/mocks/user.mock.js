@@ -62,6 +62,51 @@ const INVALID_LOGIN_BODY_4 = {
 	password: 123456,
 }
 
+const VALID_USER_REGISTER = {
+	name: "Richarlyson",
+	email: "pombo.09@email.com",
+	password: "09doHex@!",
+	role: "customer"
+}
+
+const INVALID_USER_REGISTER_1 = {
+	email: "pombo.09@email.com",
+	password: "09doHex@!",
+	role: "customer"
+}
+
+const INVALID_USER_REGISTER_2 = {
+	name: "Richarlyson",
+	password: "09doHex@!",
+	role: "customer"
+}
+
+const INVALID_USER_REGISTER_3 = {
+	name: "Richarlyson",
+	email: "pombo.09@email.com",
+	role: "customer"
+}
+
+const INVALID_USER_REGISTER_4 = {
+	name: "Richarlyson",
+	email: "pombo.09@email.com",
+	password: "09doHex@!",
+}
+
+const USER_REGISTER_WITH_INVALID_NAME = {
+  name: "Rich",
+	email: "pombo.09@email.com",
+	password: "09doHex@!",
+	role: "customer"
+}
+
+const USER_REGISTER_WITH_INVALID_PASSWORD = {
+name: "Richarlyson",
+email: "pombo.09@email.com",
+password: "09doH",
+role: "customer"
+}
+
 module.exports = {
   ALL_USERS,
   ALL_USERS_RESPONSE,
@@ -72,4 +117,11 @@ module.exports = {
   INVALID_LOGIN_BODY_2,
   INVALID_LOGIN_BODY_3,
   INVALID_LOGIN_BODY_4,
+  VALID_USER_REGISTER,
+  INVALID_USER_REGISTER_1,
+  INVALID_USER_REGISTER_2,
+  INVALID_USER_REGISTER_3,
+  INVALID_USER_REGISTER_4,
+  USER_REGISTER_WITH_INVALID_NAME,
+  USER_REGISTER_WITH_INVALID_PASSWORD,
 }

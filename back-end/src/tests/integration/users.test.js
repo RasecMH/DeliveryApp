@@ -17,6 +17,13 @@ const {
   INVALID_LOGIN_BODY_2,
   INVALID_LOGIN_BODY_3,
   INVALID_LOGIN_BODY_4,
+  VALID_USER_REGISTER,
+  INVALID_USER_REGISTER_1,
+  INVALID_USER_REGISTER_2,
+  INVALID_USER_REGISTER_3,
+  INVALID_USER_REGISTER_4,
+  USER_REGISTER_WITH_INVALID_NAME,
+  USER_REGISTER_WITH_INVALID_PASSWORD,
 } = require('./mocks/user.mock.js');
 
 chai.use(chaiHttp);
@@ -168,6 +175,84 @@ describe('Teste /users', function() {
       expect(chaiHttpResponse.body).to.have.property('name', userTest.name);
       expect(chaiHttpResponse.body).to.have.property('email', userTest.email);
       expect(chaiHttpResponse.body).to.have.property('role', userTest.role);
+      expect(chaiHttpResponse.body).to.have.property('token');
+      expect(chaiHttpResponse.body).to.not.have.property('password');
+    });
+  });
+
+  describe('Rota /users/register', function (){
+    let chaiHttpResponse;
+    
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('A rota POST /users/register retorna um erro caso o corpo da requisição não for preenchido corretamente', async function (){
+      chaiHttpResponse = await Promise.all([
+        INVALID_USER_REGISTER_1,
+        INVALID_USER_REGISTER_2,
+        INVALID_USER_REGISTER_3,
+        INVALID_USER_REGISTER_4,
+      ].map((body) => chai
+        .request(app)
+        .post('/users/register')
+        .send(body)
+      ));
+
+      chaiHttpResponse.forEach((res) => {
+        expect(res.status).to.be.eq(422);
+        expect(res.body).to.be.deep.eq({ message: "field invalid" });
+      });
+    });
+
+    it('Um novo usuário precisa ter uma SENHA com PELO MENOS 6 caracteres', async function (){
+      chaiHttpResponse = await chai
+        .request(app)
+        .post('/users/register')
+        .send(USER_REGISTER_WITH_INVALID_PASSWORD);
+
+
+        expect(chaiHttpResponse.status).to.be.eq(422);
+        expect(chaiHttpResponse.body).to.be.deep.eq({ message: "field invalid" });
+    });
+
+    it('Um novo usuário precisa ter um NOME com PELO MENOS 8 caracteres', async function (){
+      chaiHttpResponse = await chai
+        .request(app)
+        .post('/users/register')
+        .send(USER_REGISTER_WITH_INVALID_NAME);
+
+
+        expect(chaiHttpResponse.status).to.be.eq(422);
+        expect(chaiHttpResponse.body).to.be.deep.eq({ message: "field invalid" });
+    });
+
+    it('Não é possível registrar um usuário já existente', async function (){
+      sinon.stub(User, 'findOne').resolves(VALID_USER_REGISTER);
+      sinon.stub(User, 'create').resolves(VALID_USER_REGISTER);
+
+      chaiHttpResponse = await chai
+        .request(app)
+        .post('/users/register')
+        .send(VALID_USER_REGISTER);
+    
+        expect(chaiHttpResponse.status).to.be.eq(409);
+        expect(chaiHttpResponse.body).to.be.deep.eq({ message: "user not available" });
+    });
+
+    it('Testa resposta se registro de usuário foi feito corretamente', async function (){
+      sinon.stub(User, 'findOne').resolves(null);
+      sinon.stub(User, 'create').resolves(VALID_USER_REGISTER);
+
+      chaiHttpResponse = await chai
+        .request(app)
+        .post('/users/register')
+        .send(VALID_USER_REGISTER);
+    
+      expect(chaiHttpResponse.statusCode).to.eq(201);
+      expect(chaiHttpResponse.body).to.have.property('name', VALID_USER_REGISTER.name);
+      expect(chaiHttpResponse.body).to.have.property('email', VALID_USER_REGISTER.email);
+      expect(chaiHttpResponse.body).to.have.property('role', VALID_USER_REGISTER.role);
       expect(chaiHttpResponse.body).to.have.property('token');
       expect(chaiHttpResponse.body).to.not.have.property('password');
     });
