@@ -39,9 +39,37 @@ const USER_NOT_FOUND = {
   role: 'admin',
 }
 
+const LOGIN_BODY = {
+	email: "lewishamilton@gmail.com",
+	password: "123456",
+}
+
+const INVALID_LOGIN_BODY_1 = {
+	password: "123456",
+};
+
+const INVALID_LOGIN_BODY_2 = {
+  email: "lewishamilton@gmail.com",
+};
+
+const INVALID_LOGIN_BODY_3 = {
+  email: "Lewis Hamilton",
+	password: "123456",
+}
+
+const INVALID_LOGIN_BODY_4 = {
+  email: "lewishamilton@gmail.com",
+	password: 123456,
+}
+
 module.exports = {
   ALL_USERS,
   ALL_USERS_RESPONSE,
   INVALID_TOKEN,
   USER_NOT_FOUND,
+  LOGIN_BODY,
+  INVALID_LOGIN_BODY_1,
+  INVALID_LOGIN_BODY_2,
+  INVALID_LOGIN_BODY_3,
+  INVALID_LOGIN_BODY_4,
 }

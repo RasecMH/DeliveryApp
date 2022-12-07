@@ -22,14 +22,19 @@ class loginService {
 
  async findUser(email, password) {
   const passwordCompare = md5(password);
-  const dataValues = await this.model.findOne({ 
+  const user = await this.model.findOne({ 
     where: { email, password: passwordCompare }, 
     attributes: { exclude: ['password'] }, 
   });
 
-  if (!dataValues) throw new CustomError('NOT_FOUND', 'Incorrect username or password');
+  if (!user) throw new CustomError('NOT_FOUND', 'Incorrect username or password');
 
-  return dataValues.dataValues;
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  };
   }
 
   async findAll() {
