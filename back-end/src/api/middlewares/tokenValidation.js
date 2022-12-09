@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
 const { User } = require('../../database/models');
 require('dotenv/config');
 
@@ -26,7 +26,7 @@ try {
   req.user = user;
 
   res.status(200).json({ role: user.role });
-} catch (error) {
-  return next(error);
-}
-  };
+} catch (_error) {
+  return next({ type: 'UNAUTHORIZED_USER', message: 'Expired or invalid token' });
+  }
+};

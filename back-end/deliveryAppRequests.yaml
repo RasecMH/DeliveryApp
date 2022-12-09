@@ -1,0 +1,323 @@
+_type: export
+__export_format: 4
+__export_date: 2022-12-07T05:02:01.844Z
+__export_source: insomnia.desktop.app:v2022.5.1
+resources:
+  - _id: req_538328fa58a74ac2a9f39813af106423
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1670354789733
+    created: 1669866772595
+    url: http://localhost:3001/sales
+    name: GET Todas as vendas
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_bd9c7889a1fc4782a27edea83fe322ee
+    authentication: {}
+    metaSortKey: -1661607774498
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    parentId: null
+    modified: 1669866772585
+    created: 1669866772585
+    name: Delivery App
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_268bb48549f24f65a16164cc1ea0abf1
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1670354807061
+    created: 1669866772598
+    url: http://localhost:3001/sales/1
+    name: Venda com ID válido
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_bd9c7889a1fc4782a27edea83fe322ee
+    authentication: {}
+    metaSortKey: -1661580177708.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a8005af105534f13b1145135488881b9
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1670364875514
+    created: 1669866772602
+    url: http://localhost:3001/users/all
+    name: GET todos os usuários
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_bd9c7889a1fc4782a27edea83fe322ee
+    authentication: {}
+    metaSortKey: -1661566379313.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3f53a8434bb84658b1834a2238880091
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1670355621742
+    created: 1670355260475
+    url: http://localhost:3001/users/validate
+    name: /users/validate sem token
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_bd9c7889a1fc4782a27edea83fe322ee
+    authentication: {}
+    metaSortKey: -1661562929715.0625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_01f2e30a335a4b3c8b4a00501e94d907
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1670356644260
+    created: 1670355631237
+    url: http://localhost:3001/users/validate
+    name: /users/validate COM token INVÁLIDO
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_bd9c7889a1fc4782a27edea83fe322ee
+      - id: pair_a3b8c03917854734a52c8c9d07a9abe3
+        name: Authorization
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ikp1bmluaG8gY2FjaGFjZWlybyIsImVtYWlsIjoianVuaW5fcGl0dUBlbWFpbC5jb20iLCJpYXQiOjE2NzAzNTU4MDMsImV4cCI6MTY3MTY1MTgwM30.XYIq2kjA__Nn0__htflN0vCt6cUOdBCI6vTy0TpLSWQ
+        description: ""
+    authentication: {}
+    metaSortKey: -1661561204915.7188
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ec2669f05b0f44b0aba4802d0304daef
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1670389042502
+    created: 1669866772612
+    url: http://localhost:3001/sales/create
+    name: 12 - Criando uma nova venda
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"userId": 1,
+        	"sellerId": 2,
+        	"totalPrice": "50.00",
+        	"deliveryAddress": "Rua 2",
+        	"deliveryNumber": "123123123",
+        	"status": "Pendente",
+        	"salesProducts": [
+        		{
+        			"id": 1,
+        			"quantity": 4
+        		},
+        		{
+        			"id": 2,
+        			"quantity": 3
+        		}
+        	]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_bd9c7889a1fc4782a27edea83fe322ee
+      - id: pair_2545d1d000754dc08f15984dadbf6daa
+        name: Authorization
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxld2lzaGFtaWx0b25AZ21haWwuY29tIiwiaWF0IjoxNjY0MjM3OTA4LCJleHAiOjE2NjQ4NDI3MDh9.LPCkHPl-xQsIb1MeB0JiYg0omGNyzQ2Zfit1A3X-jhc
+        description: ""
+    authentication: {}
+    metaSortKey: -1661554305705.8438
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ddd03841392c444cba260368b8771304
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1670389040214
+    created: 1670355710476
+    url: http://localhost:3001/users/register
+    name: Registrando novo usuário
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Juninho cachaceiro",
+        	"email": "junin_pitu@email.com",
+        	"password": "password",
+        	"role": "customer"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_bd9c7889a1fc4782a27edea83fe322ee
+    authentication: {}
+    metaSortKey: -1661553874509.1328
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a2dd553a6f4f46688f5775dd8db00191
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1670389036691
+    created: 1669866772615
+    url: http://localhost:3001/users/login
+    name: LOGIN
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "zebirita@email.com",
+        	"password": "$#zebirita#$"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_bd9c7889a1fc4782a27edea83fe322ee
+      - id: pair_2545d1d000754dc08f15984dadbf6daa
+        name: Authorization
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxld2lzaGFtaWx0b25AZ21haWwuY29tIiwiaWF0IjoxNjY0MjM3OTA4LCJleHAiOjE2NjQ4NDI3MDh9.LPCkHPl-xQsIb1MeB0JiYg0omGNyzQ2Zfit1A3X-jhc
+        description: ""
+    authentication: {}
+    metaSortKey: -1661553443312.4219
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5bcd65d5eed6415cba2dc0f7388ed4d2
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1670389031508
+    created: 1669866772620
+    url: http://localhost:3001/users/9999
+    name: 16 - DELETE user
+    description: ""
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_bd9c7889a1fc4782a27edea83fe322ee
+      - id: pair_2545d1d000754dc08f15984dadbf6daa
+        name: Authorization
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxld2lzaGFtaWx0b25AZ21haWwuY29tIiwiaWF0IjoxNjY0MjM3OTA4LCJleHAiOjE2NjQ4NDI3MDh9.LPCkHPl-xQsIb1MeB0JiYg0omGNyzQ2Zfit1A3X-jhc
+        description: ""
+    authentication: {}
+    metaSortKey: -1661552796517.3555
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_e0e27cdf2a2341a597951b73fdb2398d
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1670389078967
+    created: 1669866772587
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: {}
+    color: null
+    isPrivate: false
+    metaSortKey: 1661552580907
+    _type: environment
+  - _id: jar_dfb3be7ee9464185aa5d99f1e2da123e
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1669866772591
+    created: 1669866772591
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_077ce80227fa47908eb8bd2918302d98
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1669866772649
+    created: 1669866772593
+    fileName: Delivery App
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: uts_56244ac9771a404b84631b992ff8ec45
+    parentId: wrk_c5c37a71dce04c67865afc3361c0ce6e
+    modified: 1669866772625
+    created: 1669866772625
+    name: Example Test Suite
+    _type: unit_test_suite

@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
 
 const secret = fs.readFileSync('jwt.evaluation.key', 'utf-8');
 
