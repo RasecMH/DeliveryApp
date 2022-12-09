@@ -37,7 +37,6 @@ function AdminManage() {
       } },
     );
     setData(response.data.filter((d) => d.id !== userLocal.id));
-    console.log(response.data);
   };
 
   useEffect(() => {
