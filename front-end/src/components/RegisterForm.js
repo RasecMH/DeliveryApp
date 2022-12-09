@@ -24,7 +24,6 @@ function RegisterForm() {
       setValue(response.data);
       history.push('/customer/products');
     } catch (error) {
-      console.log(error.response.data);
       setfetchError(error.response.data);
     }
   };

@@ -12,7 +12,6 @@ function ItemCard({ id, price, img, name, addItem, removeItem, qtd = 0, setItem 
       quantity: Number(value),
     });
   };
-  console.log(qtd);
   return (
     <div key={ id } className="containerItem">
       <span>
