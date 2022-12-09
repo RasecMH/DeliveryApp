@@ -85,7 +85,6 @@ describe('página de login', () => {
     const passwordInput = screen.getByTestId('common_login__input-password');
     const loginButton = screen.getByTestId('common_login__button-login');
 
-
     userEvent.type(emailInput, 'fulana@deliveryapp.com');
     userEvent.type(passwordInput, 'fulana@123');
     expect(loginButton).not.toBeDisabled();
