@@ -15,7 +15,6 @@ function CustomerOrderDetails() {
       const saleId = location.pathname.split('/')[3];
       const response = await axios.get(`http://localhost:3001/sales/${saleId}`);
       setData(response.data);
-      console.log(response.data);
     };
     init();
   }, []);
