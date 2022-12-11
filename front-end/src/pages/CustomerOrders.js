@@ -10,7 +10,6 @@ function CustomerOrders() {
   useEffect(() => {
     const init = async () => {
       const response = await axios.get('http://localhost:3001/sales');
-      console.log(response.data);
       setOrders(response.data);
     };
     init();

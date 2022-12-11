@@ -43,15 +43,15 @@ function AdminManage() {
     init();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, { userName, email, password, userType }) => {
     e.preventDefault();
     try {
       await axios.post(
         'http://localhost:3001/users/register',
-        { name: e.target.nameInput.value,
-          email: e.target.emailInput.value,
-          password: e.target.passwordInput.value,
-          role: e.target.userTypeSelect.value },
+        { name: userName,
+          email,
+          password,
+          role: userType },
         { headers: {
           Authorization: userLocal.token,
         } },
@@ -59,6 +59,7 @@ function AdminManage() {
       setfetchError(null);
       init();
     } catch (error) {
+      console.log(error);
       console.log(error.response.data);
       setfetchError(error.response.data);
     }
