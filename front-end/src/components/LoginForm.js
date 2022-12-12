@@ -32,7 +32,6 @@ function LoginForm() {
       }
       history.push('/customer/products');
     } catch (error) {
-      console.log(error.response.data);
       setfetchError(error.response.data);
     }
   };

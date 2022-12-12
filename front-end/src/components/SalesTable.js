@@ -6,10 +6,8 @@ function SalesTable() {
 
   const removeItemFromLocalStorage = (id) => {
     const hasItem = value.findIndex((item) => item.id === id);
-    if (hasItem >= 0) {
-      value.splice(hasItem, 1);
-      return setValue([...value]);
-    }
+    value.splice(hasItem, 1);
+    return setValue([...value]);
   };
 
   return (

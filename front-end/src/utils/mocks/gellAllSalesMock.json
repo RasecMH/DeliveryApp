@@ -1,20 +1,12 @@
 [
   {
     "id": 1,
-    "user_id": 3,
-    "seller_id": 2,
-    "total_price": 15.0,
-    "delivery_address": "Rua das Pipoquinha, n 514",
-    "sale_date": "07/04/2021",
-    "status": "Pendente"
-  },
-  {
-    "id": 2,
-    "user_id": 3,
-    "seller_id": 2,
-    "total_price": 25.0,
-    "delivery_address": "Rua das Bitinhas, n 10",
-    "sale_date": "08/04/2021",
+    "userId": 3,
+    "sellerId": 2,
+    "totalPrice": "9.70",
+    "deliveryAddress": "Rua heheheh",
+    "deliveryNumber": "123",
+    "saleDate": "2022-12-10T17:57:57.000Z",
     "status": "Pendente"
   }
 ]

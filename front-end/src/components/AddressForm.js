@@ -5,6 +5,7 @@ import { useLocalStorage } from 'react-use';
 
 function AddressForm() {
   const [sellers, setSellers] = useState([]);
+  const [sellerSelect, setSellerSelect] = useState('');
   const [address, setAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState('');
   const [cartItems, , removeCart] = useLocalStorage('cartItems');
@@ -15,6 +16,7 @@ function AddressForm() {
     const init = async () => {
       const response = await axios.get('http://localhost:3001/users/all/sellers');
       setSellers(response.data);
+      setSellerSelect(response.data[0].id);
     };
     init();
   }, []);
@@ -23,10 +25,10 @@ function AddressForm() {
     e.preventDefault();
     const sale = {
       userId: userData.id,
-      sellerId: e.target.sellerSelect.value,
+      sellerId: sellerSelect,
       totalPrice: cartItems.reduce((acc, c) => c.price * c.quantity + acc, 0),
-      deliveryAddress: e.target.addressInput.value,
-      deliveryNumber: e.target.numberInput.value,
+      deliveryAddress: address,
+      deliveryNumber: addressNumber,
       status: 'Pendente',
       salesProducts: [...cartItems],
     };
@@ -40,7 +42,6 @@ function AddressForm() {
         } },
       );
       removeCart();
-      console.log(response.data);
       history.push(`/customer/orders/${response.data.id}`);
     } catch (error) {
       console.log(error.response.data);
@@ -56,6 +57,7 @@ function AddressForm() {
             data-testid="customer_checkout__select-seller"
             name="sellerSelect"
             id="sellerSelect"
+            onChange={ ({ target: { value } }) => setSellerSelect(value) }
           >
             {
               sellers.map((seller) => (

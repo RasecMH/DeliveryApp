@@ -16,7 +16,7 @@ class LoginController {
       const token = generateToken(user);
 
       const answer = { name: user.name, email: user.email, role: user.role, token };
-      res.status(201).json(answer);
+      return res.status(201).json(answer);
     } catch (error) {
       next(error);
     }
@@ -32,30 +32,22 @@ class LoginController {
 
       const answer = { ...login, token };
 
-      res.status(200).json(answer);
+      return res.status(200).json(answer);
     } catch (error) {
       next(error);
     }
   }
 
-  async findAll(_req, res, next) {
-    try {
-      const findAll = await this.serviceLogin.findAll();
+  async findAll(_req, res, _next) {
+    const usersList = await this.serviceLogin.findAll();
 
-      res.status(200).json(findAll);
-    } catch (error) {
-      next(error);
-    }
+    return res.status(200).json(usersList);
   }
 
-  async findAllSellers(_req, res, next) {
-    try {
-      const findAllSellers = await this.serviceLogin.findAllSellers();
+  async findAllSellers(_req, res, _next) {
+    const findAllSellers = await this.serviceLogin.findAllSellers();
 
-      res.status(200).json(findAllSellers);
-    } catch (error) {
-      next(error);
-    }
+    return res.status(200).json(findAllSellers);
   }
 
   async remove(req, res, next) {
@@ -63,7 +55,7 @@ class LoginController {
       const { id } = req.params; 
       await this.serviceLogin.remove(id);
 
-      res.status(204).json({ message: 'Deleted' });
+      return res.status(204).end();
     } catch (error) {
       next(error);
     }

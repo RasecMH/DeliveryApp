@@ -39,9 +39,8 @@ class SaleController {
 
   async create(req, res, next) {
     try {
-      const sale = req.body;
-      const { salesProducts } = sale;
-      const newSale = await this.service.create(sale);
+      const { salesProducts } = req.body;
+      const newSale = await this.service.create(req.body);
 
       const newSalesProducts = await Promise.all(salesProducts.map(async (saleProduct) => {
         await this.saleProductService.create(newSale.id, saleProduct);

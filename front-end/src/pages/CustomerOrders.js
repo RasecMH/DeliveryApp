@@ -11,7 +11,6 @@ function CustomerOrders() {
     const init = async () => {
       const response = await axios.get('http://localhost:3001/sales');
       setOrders(response.data);
-      console.log(response.data);
     };
     init();
   }, []);

@@ -49,7 +49,6 @@ function CustomerProducts() {
     const init = async () => {
       const response = await axios.get('http://localhost:3001/products');
       setProducts(response.data);
-      console.log(response.data);
     };
     init();
   }, []);

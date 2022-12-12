@@ -1,0 +1,32 @@
+[
+  {
+    "id": 2,
+    "name": "Fulana Pereira",
+    "email": "fulana@deliveryapp.com",
+    "role": "seller"
+  },
+  {
+    "id": 11,
+    "name": "Cesar Holanda",
+    "email": "cesar.holanda2@email.com",
+    "role": "seller"
+  },
+  {
+    "id": 12,
+    "name": "Cesar Holanda",
+    "email": "cesar.holanda22@email.com",
+    "role": "seller"
+  },
+  {
+    "id": 13,
+    "name": "Cesar Holanda",
+    "email": "cesar.holanda222@email.com",
+    "role": "seller"
+  },
+  {
+    "id": 14,
+    "name": "Cesar Holanda",
+    "email": "cesar.holanda2224@email.com",
+    "role": "seller"
+  }
+]

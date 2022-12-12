@@ -5,12 +5,13 @@ function NewUserForm({ handleSubmit, fetchError }) {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userType, setUserType] = useState('customer');
   const passwordMinLength = 6;
   const nameMinLength = 12;
 
   return (
     <div className="containerItem">
-      <form onSubmit={ handleSubmit }>
+      <form onSubmit={ (e) => handleSubmit(e, { userName, email, password, userType }) }>
         <label htmlFor="nameInput">
           Nome:
           <input
@@ -50,6 +51,8 @@ function NewUserForm({ handleSubmit, fetchError }) {
             data-testid="admin_manage__select-role"
             name="userType"
             id="userTypeSelect"
+            onChange={ ({ target: { value } }) => setUserType(value) }
+
           >
             <option value="seller">Vendedor</option>
             <option value="administrator">Administrador</option>
