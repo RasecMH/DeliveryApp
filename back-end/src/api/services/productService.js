@@ -10,12 +10,6 @@ class ProductService {
     const products = await this.model.findAll();
     return products;
   }
-
-  async getById(id) {
-    this.model = Product;
-    const product = await this.model.findOne({ where: { id } });
-    return product;
-  }
 }
 
 module.exports = ProductService;
