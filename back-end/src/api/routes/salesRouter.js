@@ -5,12 +5,10 @@ const salesRouter = Router();
 const saleController = new SaleController();
 
 salesRouter.route('/:id')
-  .get((req, res, next) => saleController.getById(req, res, next))
-  .put();
+  .get((req, res, next) => saleController.getById(req, res, next));
 
 salesRouter.route('/')
-  .get((req, res, next) => saleController.getAll(req, res, next))
-  .post();
+  .get((req, res, next) => saleController.getAll(req, res, next));
 
 salesRouter.route('/create')
   .post((req, res, next) => saleController.create(req, res, next));
