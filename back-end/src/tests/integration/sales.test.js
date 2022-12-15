@@ -16,16 +16,34 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe.only('Teste /sales', function() {
-  let chaiHttpResponse;
-  it('Retorna todas as vendas corretamente', async function() {
-    sinon.stub(Sale, 'findAll').resolves(SALES_LIST);
+describe('Teste /sales', function() {
+  describe('Métodos GET', function() {
+    let chaiHttpResponse;
 
-    chaiHttpResponse = await chai
-         .request(app)
-         .get('/sales');
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Retorna todas as vendas corretamente', async function() {
+      sinon.stub(Sale, 'findAll').resolves(SALES_LIST);
   
-      expect(chaiHttpResponse.status).to.be.eq(200);
-      expect(chaiHttpResponse.body).to.be.deep.eq(SALES_LIST);
+      chaiHttpResponse = await chai
+           .request(app)
+           .get('/sales');
+    
+        expect(chaiHttpResponse.status).to.be.eq(200);
+        expect(chaiHttpResponse.body).to.be.deep.eq(SALES_LIST);
+    });
+
+    it('Retorna todas as vendas corretamente', async function() {
+      sinon.stub(Sale, 'findAll').resolves(SALES_LIST);
+  
+      chaiHttpResponse = await chai
+           .request(app)
+           .get('/sales');
+    
+        expect(chaiHttpResponse.status).to.be.eq(200);
+        expect(chaiHttpResponse.body).to.be.deep.eq(SALES_LIST);
+    });
   });
 });
