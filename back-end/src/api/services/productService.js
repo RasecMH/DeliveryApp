@@ -1,4 +1,5 @@
 const { Product } = require('../../database/models');
+const CustomError = require('../utils/CustomError');
 
 class ProductService {
   constructor() {
@@ -14,7 +15,9 @@ class ProductService {
   async getById(id) {
     this.model = Product;
     const product = await this.model.findOne({ where: { id } });
-    return product;
+
+    if (product) return product;
+    throw new CustomError('NOT_FOUND', 'Product not found');
   }
 }
 

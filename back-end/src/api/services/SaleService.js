@@ -1,4 +1,5 @@
 const { Sale, User } = require('../../database/models');
+const CustomError = require('../utils/CustomError');
 const AbstractService = require('./AbstractService');
 
 class SaleService extends AbstractService {
@@ -17,18 +18,16 @@ class SaleService extends AbstractService {
     return updatedSale;
   }
 
-  async getById(saleId) {
+  async getById(id) {
     const sale = await this.model.findOne({
-       where: { id: saleId },
-       include: [
-        { model: User, 
-          as: 'seller', 
-          attributes: ['name'], 
-        },
-      ],
-      
-      });
-    return sale;
+      where: { id },
+      include: [{ model: User, as: 'seller', attributes: ['name'] }],
+    });
+
+    if (sale) {
+      return sale;
+    }
+    throw new CustomError('NOT_FOUND', 'Sale not found');
   }
 }
 

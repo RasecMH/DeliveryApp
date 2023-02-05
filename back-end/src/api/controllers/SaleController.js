@@ -31,6 +31,7 @@ class SaleController {
           quantity: product.quantity,
         };
       }));
+
       return res.status(200).json({ ...result.dataValues, saleProducts });
     } catch (error) {
       next(error);
